@@ -33,7 +33,7 @@ function PannelLog(){
             return _this;
         }
     } ;
-    this.newLineString = "--------------------------------------------------------------------------------------------------------------";
+    this.newLineString = "----------------------------------------------------------------------------------------------";
     this.color = clc ;
     /**
      * Every update ecra step, after clear ecra

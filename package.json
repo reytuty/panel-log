@@ -1,5 +1,5 @@
 {
-  "name": "pannel-log",
+  "name": "panel-log",
   "version": "0.0.1",
   "description": "Log for apps to show pretty info",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reytuty/pannel-log.git"
+    "url": "git+https://github.com/reytuty/panel-log.git"
   },
   "keywords": [
     "log",

@@ -34,7 +34,7 @@ var pannelLog = require('../index') ;
         .fill()
         .output();
         //You also can use default console.log and it will persist on screen 
-        console.log("------------------------------------------------------------------------------------------------------------------------") ;
+        console.log("----------------------------------------------------------------------------------------------") ;
         for(var i in myList){
             var item = myList[i] ;
             console.log("[ITEM "+i+"] x{"+item.x+" value: "+item.value+" ");  
