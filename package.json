@@ -1,0 +1,35 @@
+{
+  "name": "pannel-log",
+  "version": "0.0.1",
+  "description": "Log for apps to show pretty info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reytuty/pannel-log.git"
+  },
+  "keywords": [
+    "log",
+    "pretty",
+    "console",
+    "log",
+    "pannel",
+    "header",
+    "console",
+    "static",
+    "data"
+  ],
+  "author": "Renato Seiji Miawaki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reytuty/pannel-log/issues"
+  },
+  "homepage": "https://github.com/reytuty/pannel-log#readme",
+  "dependencies": {
+    "cli-color": "^1.4.0",
+    "clui": "^0.3.6",
+    "signals": "^1.0.0"
+  }
+}
