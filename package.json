@@ -1,6 +1,6 @@
 {
   "name": "panel-log",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Log for apps to show pretty info",
   "main": "index.js",
   "scripts": {

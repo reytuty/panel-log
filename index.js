@@ -14,6 +14,7 @@ function PannelLog(){
     let me = this ;
     this.appName = "" ;
     this.appVersion = "";
+    this.timeUpdateScreen = 500 ;
     this.forceString = (item)=>{
         return item + "" ;
     }
@@ -116,7 +117,7 @@ function PannelLog(){
             me.onUpdate.dispatch();
             updateLogEcra() ;
             console.log( me.newLineString ) ;
-        }, 200) ;
+        }, me.timeUpdateScreen) ;
     }
     this.stop = ()=>{
         clearInterval(intervalId) ;
