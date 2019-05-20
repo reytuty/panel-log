@@ -1,10 +1,16 @@
 //https://www.npmjs.com/package/clui
+var BasicStopwatch = require('basic-stopwatch');
 var clui = require('clui'),
     clc = require('cli-color'),
     Line = clui.Line;
 var Progress = clui.Progress;
 var Signal = require('signals') ;
 function PannelLog(){
+    let bWatch = new BasicStopwatch({outputFunc:(time)=>{
+        //time is HH:MM:SS.mmm => HH:MM:SS
+        return  time.slice(0,8);
+    }});
+    bWatch.start();
     let me = this ;
     this.appName = "" ;
     this.appVersion = "";
@@ -44,7 +50,7 @@ function PannelLog(){
     let percentTotal = 0 ;
     var percent = new Progress(20) ;
     //TODO: make it works
-    var timeRunning = "0:00";
+    var timeRunning = bWatch.getElapsed();
     var percentString = percent.update(0);
     this.setPercentComplete = ( p )=>{
         percentTotal = p ;
@@ -78,7 +84,7 @@ function PannelLog(){
         }
     }
     function updateEcra(){
-
+        var timeRunning = bWatch.getElapsed();
         var loadColor = [clc.cyan] ;
         completeString = percentString ;
         
