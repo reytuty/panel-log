@@ -5,7 +5,10 @@ var clui = require('clui'),
     Line = clui.Line;
 var Progress = clui.Progress;
 var Signal = require('signals') ;
+
 function PannelLog(){
+    var logTablesHeader = new Map() ;
+    var logTablesLines  = new Map() ;
     let bWatch = new BasicStopwatch({outputFunc:(time)=>{
         //time is HH:MM:SS.mmm => HH:MM:SS
         return  time.slice(0,8);
@@ -80,8 +83,7 @@ function PannelLog(){
     this.addLog = doAdd ;
     function updateLogEcra(){
         for(var i in logs){
-            //console.log(logs[i]) ;
-            console.log.apply( logs[i] ) ; 
+            console.log.apply( null, logs[i] ) ; 
         }
     }
     function updateEcra(){
