@@ -21,6 +21,7 @@ function PannelLog(){
     this.forceString = (item)=>{
         return item + "" ;
     }
+    this.Progress = Progress ;
     //line class
     this.Line = function(){
         let _this = this;

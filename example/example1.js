@@ -9,6 +9,7 @@ var pannelLog = require('../index') ;
     setTimeout(pannelLog.setPercentComplete, 2000, 0.8);
     setTimeout(pannelLog.setPercentComplete, 2500, 1);
     //Your custom data
+    
     pannelLog.onUpdate.add(()=>{
         //my list
         var myList = [{x:1, value:3},{x:2, value:3},{x:3, value:3},{x:4, value:3},{x:5, value:3}] ;
