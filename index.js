@@ -64,6 +64,12 @@ function PannelLog(){
             percentString = "COMPLETE" ;
         }
     }
+    this.getTimeRunning = ()=>{
+        return timeRunning ;
+    }
+    this.getPercentComplete = ()=>{
+        return Math.floor(( percentTotal/1)*100 );
+    }
     this.setLimitLog = (limit)=>{
         limit = parseInt(limit) ;
         if(isNaN(limit)){
@@ -88,7 +94,7 @@ function PannelLog(){
         }
     }
     function updateEcra(){
-        var timeRunning = bWatch.getElapsed();
+        timeRunning = bWatch.getElapsed();
         var loadColor = [clc.cyan] ;
         completeString = percentString ;
         

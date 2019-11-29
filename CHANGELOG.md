@@ -1,3 +1,8 @@
+## [1.1.0] - 2019-11-28
+### ADD
+- get TimeRunning and percentTotal in public method
+
+
 ## [0.0.5] - 2019-06-05
 ### FIX
 - addLog Method fix
