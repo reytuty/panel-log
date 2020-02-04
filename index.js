@@ -53,6 +53,7 @@ function PannelLog(){
     let logs = [];
     var limitLog = 10 ;
     let percentTotal = 0 ;
+    this.memoryUsage = 0;
     var percent = new Progress(20) ;
     //TODO: make it works
     var timeRunning = bWatch.getElapsed();
@@ -103,15 +104,25 @@ function PannelLog(){
         .column('Application', 20, [clc.cyan])
         .column('Version', 20, [clc.cyan])
         .column('Time Running', 20, [clc.cyan])
+        .column('Memory', 20, [clc.cyan])
         .column('Load', 20, loadColor)
         .fill()
         .output() ;
         
+        var usedMemory = Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100 ;
+        me.memoryUsage = usedMemory*1;
+        if(usedMemory > 1024){
+            usedMemory =  Math.round((usedMemory/1024)*100)/100;
+            usedMemory = usedMemory + " Gb";
+        } else {
+            usedMemory = usedMemory + " Mb";
+        }
         var line = new Line()
         .padding(2)
         .column(me.appName, 20)
         .column(me.appVersion, 20)
         .column(timeRunning, 20)
+        .column(usedMemory, 20)
         .column(percentString, 40)
         .fill()
         .output() ;
