@@ -125,13 +125,15 @@ function PannelLog(){
         line.padding( me.emptySpace.width );
     }
     function drawLine(lineItem, propName = "label", color){
-        var lineDraw = new Line()
+        var lineDraw = new Line();
+        
         for(var j = 0; j <= maxColumns; j++){
             if(lineItem.has(j)){
                 var col = lineItem.get(j);
                 var type = typeof(col[propName]);
-                var val = (type=="function")? col[propName]() : col[propName]
-                lineDraw.column(val+"", col.width, color)
+                var c = {color:color.color};
+                var val = (type=="function")? col[propName](c) : col[propName]
+                lineDraw.column(val+"", col.width, c.color)
             } else {
                 drawEmpty(lineDraw);
             }
@@ -159,9 +161,9 @@ function PannelLog(){
             var line = getLineMap(i);
             if(line.size > 0){
                 //draw titles
-                drawLine(line, "label", [clc.cyan])
+                drawLine(line, "label", {color:[clc.cyan]})
                 //draw values
-                drawLine(line, "methodToGetValueOrValue", [clc.white])
+                drawLine(line, "methodToGetValueOrValue", {color:[clc.white]})
             } 
         }
     }

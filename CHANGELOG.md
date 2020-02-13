@@ -1,3 +1,8 @@
+## [1.4.1] - 2019-11-28
+### ADD
+- its possible to change layout color in method value
+
+
 ## [1.4.0] - 2019-11-28
 ### ADD
 - title of group method

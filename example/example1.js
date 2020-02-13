@@ -19,9 +19,17 @@ var pannelLog = require('../index') ;
     var infiniteArray = [];
     pannelLog.addLineGroup(2, "TESTS HERE") ;
     //make itens with method
-    pannelLog.addItem(2, 2, "TEST 1", 20, 44);
+    
+    
     let count = 0;
-    pannelLog.addItem(2, 3, "TEST 2", 20, ()=>{
+    pannelLog.addItem(2, 2, (colorInfo)=>{
+        if(count%2 == 0){
+            colorInfo.color = [pannelLog.color.yellow];
+        }
+        return "TEST 1" ;
+    }, 20, 44);
+    pannelLog.addItem(2, 3, "TEST 2", 20, (colorInfo)=>{
+        colorInfo.color = [pannelLog.color.blue];
         return count++;
     })
 
