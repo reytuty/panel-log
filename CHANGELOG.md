@@ -1,3 +1,9 @@
+## [1.5.1] - 2019-11-28
+### CHANGE
+- ALIGN ITENS
+
+
+
 ## [1.4.1] - 2019-11-28
 ### ADD
 - its possible to change layout color in method value

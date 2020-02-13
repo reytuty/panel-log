@@ -126,7 +126,7 @@ function PannelLog(){
     }
     function drawLine(lineItem, propName = "label", color){
         var lineDraw = new Line();
-        
+        lineDraw.padding(2) ;
         for(var j = 0; j <= maxColumns; j++){
             if(lineItem.has(j)){
                 var col = lineItem.get(j);
