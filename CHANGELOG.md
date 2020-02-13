@@ -1,3 +1,7 @@
+## [1.2.0] - 2019-11-28
+### ADD
+- you can create column just using easy methods to add item with label and value or method to get that value
+
 ## [1.1.0] - 2019-11-28
 ### ADD
 - get TimeRunning and percentTotal in public method

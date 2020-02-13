@@ -17,6 +17,15 @@ var pannelLog = require('../index') ;
         return arr;
     }
     var infiniteArray = [];
+    //make itens with method
+    pannelLog.addItem(2, 2, "TESTE", 20, 44);
+    let count = 0;
+    pannelLog.addItem(2, 3, "TESTE", 20, ()=>{
+        return count++;
+    })
+
+
+    //make lines with your own
     pannelLog.onUpdate.add(()=>{
         if(pannelLog.memoryUsage < 1200){
             //spending memory to test log
