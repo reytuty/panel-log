@@ -17,10 +17,11 @@ var pannelLog = require('../index') ;
         return arr;
     }
     var infiniteArray = [];
+    pannelLog.addLineGroup(2, "TESTS HERE") ;
     //make itens with method
-    pannelLog.addItem(2, 2, "TESTE", 20, 44);
+    pannelLog.addItem(2, 2, "TEST 1", 20, 44);
     let count = 0;
-    pannelLog.addItem(2, 3, "TESTE", 20, ()=>{
+    pannelLog.addItem(2, 3, "TEST 2", 20, ()=>{
         return count++;
     })
 

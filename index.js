@@ -8,6 +8,7 @@ var Signal = require('signals') ;
 
 function PannelLog(){
     let groupLines = new Map() ;
+    let lineGroup = new Map() ;
     let maxLines = 0;
     let maxColumns = 0 ;
     let hasExtraItens = false ;
@@ -105,6 +106,9 @@ function PannelLog(){
         }
         return groupLines.get(line);
     }
+    this.addLineGroup = (line, label, color = [clc.red])=>{
+        lineGroup.set(line, {label, color});
+    }
     this.addItem = (lineIndex, columnIndex, label, width, methodToGetValueOrValue)=>{
         if(maxColumns < columnIndex){
             maxColumns = columnIndex ;
@@ -139,6 +143,19 @@ function PannelLog(){
             return;
         }
         for(var i = 0; i <= maxLines; i++){
+            if(lineGroup.has(i)){
+                var group = new Line()
+                .padding(2)
+                .column(me.newLineString, me.newLineString.length, [clc.white])
+                .fill()
+                .output() ;
+                var labelLine = lineGroup.get(i);
+                var group = new Line()
+                .padding(2)
+                .column(labelLine.label+"", 120, labelLine.color)
+                .fill()
+                .output() ;
+            }
             var line = getLineMap(i);
             if(line.size > 0){
                 //draw titles
