@@ -45,8 +45,34 @@ var panelLog = require('panel-log') ;
     panelLog.start() ;
 ```
 
+# Example 1
 
-# Example
+```
+var pannelLog = require('panel-log') ;
+    pannelLog.appName = "My App";
+    pannelLog.appVersion = "1.0.0";
+    pannelLog.start() ;
+    //you can pass real things
+    setTimeout(pannelLog.setPercentComplete, 500, 0.2);
+    setTimeout(pannelLog.setPercentComplete, 1000, 0.4);
+    setTimeout(pannelLog.setPercentComplete, 1500, 0.6);
+    setTimeout(pannelLog.setPercentComplete, 2000, 0.8);
+    setTimeout(pannelLog.setPercentComplete, 2500, 1);
+
+    //your itens
+
+    //add into line 2 and column 2 with label TEST 1 and width 20 the value 44
+    pannelLog.addItem(2, 2, "TEST 1", 20, 44);
+    let count = 0;
+
+    //add into line 2 and column 3 with label TEST 2, width 20 the value that returns by method with count external attribute
+    pannelLog.addItem(2, 3, "TEST 2", 20, ()=>{
+        return count++;
+    })
+
+```
+
+# Example 2
 
 ```
 var pannelLog = require('panel-log') ;

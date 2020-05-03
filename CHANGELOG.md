@@ -1,3 +1,25 @@
+## [1.6.0] - 2019-11-28
+### ADD
+- reset and removeLine
+
+
+## [1.5.1] - 2019-11-28
+### CHANGE
+- ALIGN ITENS
+
+## [1.4.1] - 2019-11-28
+### ADD
+- its possible to change layout color in method value
+
+
+## [1.4.0] - 2019-11-28
+### ADD
+- title of group method
+
+## [1.3.0] - 2019-11-28
+### ADD
+- you can create column just using easy methods to add item with label and value or method to get that value
+
 ## [1.1.0] - 2019-11-28
 ### ADD
 - get TimeRunning and percentTotal in public method
