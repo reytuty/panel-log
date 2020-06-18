@@ -1,3 +1,7 @@
+## [1.6.1] - 2019-11-28
+### FIXED
+- reset, reset title too
+
 ## [1.6.0] - 2019-11-28
 ### ADD
 - reset and removeLine

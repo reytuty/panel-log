@@ -112,6 +112,7 @@ function PannelLog(){
     }
     this.resetItens = ()=>{
         groupLines.clear() ;
+        lineGroup.clear();
         hasExtraItens = false ;
     }
     this.removeItem = (lineIndex, columnIndex)=>{
