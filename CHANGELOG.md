@@ -1,3 +1,8 @@
+## [1.8.1] - 2020-06-18
+### FIX
+- fixed error null point
+
+
 ## [1.8.0] - 2020-06-18
 ### ADD
 - add addLineItem, no group and no headers

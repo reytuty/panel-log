@@ -159,10 +159,10 @@ function PannelLog(){
         lineDraw.padding(2) ;
         for(var j = 0; j <= maxColumns; j++){
             if(lineItem.has(j)){
+                var col = lineItem.get(j);
                 if(col[propName]){
                     hasLine = true ;
                 }
-                var col = lineItem.get(j);
                 var type = typeof(col[propName]);
                 var c = {color:color.color};
                 var val = (type=="function")? col[propName](c) : col[propName]
