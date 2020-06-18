@@ -5,6 +5,7 @@ var clui = require('clui'),
     Line = clui.Line;
 var Progress = clui.Progress;
 var Signal = require('signals') ;
+const readline = require('readline');
 
 function PannelLog(){
     let groupLines = new Map() ;
@@ -12,6 +13,17 @@ function PannelLog(){
     let maxLines = 0;
     let maxColumns = 0 ;
     let hasExtraItens = false ;
+    let channelList = new Map() ;
+    this.registerChannel = (channelKey, channelName)=>{
+        if(channelKey.length == 1){
+            channelList.set(channelKey, channelName) ;
+            return ;
+        }
+        throw new Error("registerChannel need to char on channelKey, like a, b or c not words") ;
+    }
+    this.clearChannel = ()=>{
+        channelList.clear() ;
+    }
     this.emptySpace = {
         width:20
     };
@@ -60,6 +72,7 @@ function PannelLog(){
     var limitLog = 10 ;
     let percentTotal = 0 ;
     this.memoryUsage = 0;
+    let currentChannel = null ;
     var percent = new Progress(20) ;
     //TODO: make it works
     var timeRunning = bWatch.getElapsed();
@@ -70,6 +83,9 @@ function PannelLog(){
         if(percentTotal >=1){
             percentString = "COMPLETE" ;
         }
+    }
+    this.setChannel = (channel = null)=>{
+        currentChannel = channel ;
     }
     this.getTimeRunning = ()=>{
         return timeRunning ;
@@ -107,8 +123,8 @@ function PannelLog(){
         return groupLines.get(line);
     }
     
-    this.addLineGroup = (line, label, color = [clc.red])=>{
-        lineGroup.set(line, {label, color});
+    this.addLineGroup = (line, label, color = [clc.red], channel = null)=>{
+        lineGroup.set(line+channel, {label, color});
     }
     this.resetItens = ()=>{
         groupLines.clear() ;
@@ -119,7 +135,7 @@ function PannelLog(){
         groupLines.delete( lineIndex ) ;
         hasExtraItens = (groupLines.size > 0) ;
     }
-    this.addItem = (lineIndex, columnIndex, label, width, methodToGetValueOrValue)=>{
+    this.addItem = (lineIndex, columnIndex, label, width, methodToGetValueOrValue, channel = null)=>{
         if(maxColumns < columnIndex){
             maxColumns = columnIndex ;
         }
@@ -127,7 +143,7 @@ function PannelLog(){
             maxLines = lineIndex ;
         }
         var item = {label, width, methodToGetValueOrValue};
-        var lineMap = getLineMap(lineIndex);
+        var lineMap = getLineMap(lineIndex+channel);
         lineMap.set(columnIndex, item);
         hasExtraItens = true ;
     }
@@ -150,25 +166,25 @@ function PannelLog(){
         }
         lineDraw.fill().output() ;
     }
-    function updateItens(){
+    function updateItens(channel = null){
         if(!hasExtraItens){
             return;
         }
         for(var i = 0; i <= maxLines; i++){
-            if(lineGroup.has(i)){
+            if(lineGroup.has(i+channel)){
                 var group = new Line()
                 .padding(2)
                 .column(me.newLineString, me.newLineString.length, [clc.white])
                 .fill()
                 .output() ;
-                var labelLine = lineGroup.get(i);
+                var labelLine = lineGroup.get(i+channel);
                 var group = new Line()
                 .padding(2)
                 .column(labelLine.label+"", 120, labelLine.color)
                 .fill()
                 .output() ;
             }
-            var line = getLineMap(i);
+            var line = getLineMap(i+channel);
             if(line.size > 0){
                 //draw titles
                 drawLine(line, "label", {color:[clc.cyan]})
@@ -181,7 +197,12 @@ function PannelLog(){
         timeRunning = bWatch.getElapsed();
         var loadColor = [clc.cyan] ;
         completeString = percentString ;
-        
+        var strShortCuts = "";
+        if(channelList.size > 0){
+            channelList.forEach((val, key)=>{
+                strShortCuts += "[ ("+key+") "+val+" ]" ;
+            })
+        }
         var headers = new Line()
         .padding(2)
         .column('Application', 20, [clc.cyan])
@@ -189,6 +210,7 @@ function PannelLog(){
         .column('Time Running', 20, [clc.cyan])
         .column('Memory', 20, [clc.cyan])
         .column('Load', 20, loadColor)
+        .column('Shortcuts', (strShortCuts.length>0)?strShortCuts.length+1:16, [clc.cyan])
         .fill()
         .output() ;
         
@@ -207,9 +229,13 @@ function PannelLog(){
         .column(timeRunning, 20)
         .column(usedMemory, 20)
         .column(percentString, 40)
+        .column(strShortCuts.length > 0 ? strShortCuts : "no shortcuts", strShortCuts.length > 0 ? strShortCuts.length+1: 16 )
         .fill()
         .output() ;
         updateItens();
+        if(currentChannel){
+            updateItens(currentChannel)
+        }
     }
     let intervalId = null ;
     this.start = ()=>{
@@ -226,7 +252,29 @@ function PannelLog(){
     this.stop = ()=>{
         clearInterval(intervalId) ;
     }
-    
+    let pannelOn = true ;
+    function setReadLineKeypress(){ 
+        readline.emitKeypressEvents(process.stdin);
+        try{
+            process.stdin.setRawMode(true);
+        } catch(e){
+            //
+        }
+        process.stdin.on('keypress', (str, key) => {
+            if (key.ctrl && key.name === 'c') {
+                process.exit();
+            }
+            if (key.ctrl && key.name === 'o') {
+                pannelOn = !pannelOn;
+                (pannelOn)?me.start():me.stop() ;
+            }
+            if (channelList.has(key.name)) {
+                //change to show vessels
+                me.setChannel(key.name) ;
+            }
+        });
+        }
+        setReadLineKeypress();
 }
 
 module.exports = new PannelLog() ;

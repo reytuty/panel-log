@@ -1,4 +1,9 @@
-## [1.6.1] - 2019-11-28
+## [1.7.0] - 2020-06-18
+### ADD
+- channel to change on key press
+
+
+## [1.6.1] - 2020-06-18
 ### FIXED
 - reset, reset title too
 
