@@ -126,6 +126,9 @@ function PannelLog(){
     this.addLineGroup = (line, label, color = [clc.red], channel = null)=>{
         lineGroup.set(line+channel, {label, color});
     }
+    this.addLineItem = (lineIndex, columnIndex, width, methodToGetValueOrValue, channel = null)=>{
+        me.addItem(lineIndex, columnIndex, null, width, methodToGetValueOrValue, channel) ;
+    }
     this.resetItens = ()=>{
         groupLines.clear() ;
         lineGroup.clear();
@@ -151,10 +154,14 @@ function PannelLog(){
         line.padding( me.emptySpace.width );
     }
     function drawLine(lineItem, propName = "label", color){
+        var hasLine = false ;
         var lineDraw = new Line();
         lineDraw.padding(2) ;
         for(var j = 0; j <= maxColumns; j++){
             if(lineItem.has(j)){
+                if(col[propName]){
+                    hasLine = true ;
+                }
                 var col = lineItem.get(j);
                 var type = typeof(col[propName]);
                 var c = {color:color.color};
@@ -164,7 +171,9 @@ function PannelLog(){
                 drawEmpty(lineDraw);
             }
         }
-        lineDraw.fill().output() ;
+        if(hasLine){
+            lineDraw.fill().output() ;
+        }
     }
     function updateItens(channel = null){
         if(!hasExtraItens){

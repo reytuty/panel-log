@@ -1,3 +1,7 @@
+## [1.8.0] - 2020-06-18
+### ADD
+- add addLineItem, no group and no headers
+
 ## [1.7.0] - 2020-06-18
 ### ADD
 - channel to change on key press
