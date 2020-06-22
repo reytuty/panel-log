@@ -1,3 +1,7 @@
+## [1.8.2] - 2020-06-22
+### FIX
+- fixed memory usage realistic
+
 ## [1.8.1] - 2020-06-18
 ### FIX
 - fixed error null point
