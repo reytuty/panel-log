@@ -223,7 +223,7 @@ function PannelLog(){
         .fill()
         .output() ;
         
-        var usedMemory = Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100 ;
+        var usedMemory = Math.round(process.memoryUsage().rss / 1048576);
         me.memoryUsage = usedMemory*1;
         if(usedMemory > 1024){
             usedMemory =  Math.round((usedMemory/1024)*100)/100;
